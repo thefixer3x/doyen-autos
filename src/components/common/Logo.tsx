@@ -1,0 +1,20 @@
+import React from 'react';
+import { OptimizedImage } from './OptimizedImage';
+
+export const Logo: React.FC<{ className?: string }> = ({ className }) => {
+  return (
+    <OptimizedImage
+      src="/doyen-logo.png"
+      alt="Doyen Autos Logo"
+      width={150}
+      height={50}
+      priority={true}
+      className={className}
+      onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+        const target = e.currentTarget;
+        target.onerror = null;
+        target.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAoCAYAAAA16j4lAAADJElEQVR4nO2cT2sTQRjGn9m62rrVVmvFqiheCp704EFBDx5E/Ac96cWTX8GjFEE8ehE/gFAPHgQP6kHx5MWDKA0UihbaJN3NxmTiLBo3u5PZzGzmeX4Q2s7OvO/uvO+zM5NNE4AIgmDe9/2LQRBcbTabZ4UQszEVQxDiOEYURfB9H1EUwfM8eJ6HMAyRpinSNEUQBEiSBEmSII5jJEmCOI6RZRnyPEee58jzHFJKSCmRZRnyPIeUElmWQSmFPM+hlIJSCkopKKWQZRmyLEOe51BKQSmFPM+RZRmUUkjTFGmaIk1TJEmCJEkQxzGiKEIURQjDEEEQwPd9+L6PKIoQBAE8z4Pv+/A8D2EYIgxDBEGAMAyRJAmSJEGSJIjjGHEcI0kSJEmCOI4RxzHiOEYcx4jjGHEcI45jxHGMOI4RxzGSJEEcx4jjGHEcI45jJEmCJEkQxzGSJEEURQjDEJ7nwfd9hGGIIAgQBAF834fneQjDEJ7nwfM8hGGIIAgQBAE8z4Pv+/B9H77vw/d9eJ6HMAzh+z6CIEAQBAiCAEEQwPd9+L6PIAgQBAF834fneQiCAJ7nwfd9eJ6HMAzheR6CIEAQBPvXDcMQYRgiDEOEYYggCBAEAYIggO/78H0fQRAgCAIEQYAgCBAEAYIgQBAECIIAvh8gDEMEQYAwDBEEAYIgQBAE8H0fQRAgCAL4vg/f9+H7PnzfRxAECIIAnufB8zx4ngfP8+B5HjzPg+d58DwPnufB8zx4ngff9+H7PnzfRxAECIIAQRAgCAIEQYAwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDPEbCZqxE+T5RkIAAAAASUVORK5CYII=';
+      }}
+    />
+  );
+};
