@@ -38,12 +38,12 @@ export const MultiImageViewer: React.FC<MultiImageViewerProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Main image - scaled to 75% and centered */}
-      <div className="w-full h-full flex items-center justify-center">
+      {/* Main image */}
+      <div className="w-full h-full flex items-center justify-center bg-gray-50">
         <img 
           src={images[currentIndex]} 
           alt={`${alt} - View ${currentIndex + 1}`}
-          className="w-3/4 h-3/4 object-contain" 
+          className="max-w-full max-h-full object-contain p-2" 
           onError={(e) => {
             e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMjAwIDE1MCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNlZWVlZWUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiBmaWxsPSIjOTk5OTk5Ij5JbWFnZSBub3QgYXZhaWxhYmxlPC90ZXh0Pjwvc3ZnPg==';
           }}
@@ -85,7 +85,7 @@ export const MultiImageViewer: React.FC<MultiImageViewerProps> = ({
               onClick={() => setCurrentIndex(idx)}
               className={cn(
                 "w-2 h-2 rounded-full transition-all",
-                currentImageIndex === idx 
+                currentIndex === idx 
                   ? "bg-white w-4" 
                   : "bg-white/50 hover:bg-white/80"
               )}

@@ -1,7 +1,6 @@
 import React from 'react';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Modal } from './Modal';
-import { OptimizedImage } from '../common/OptimizedImage';
 import { cn } from '../../utils/cn';
 
 interface ImageViewerModalProps {
@@ -22,11 +21,20 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
   const [imageLoaded, setImageLoaded] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
 
+  // Reset states when the image source changes or modal opens
+  React.useEffect(() => {
+    if (isOpen) {
+      setImageLoaded(false);
+      setImageError(false);
+    }
+  }, [imageSrc, isOpen]);
+
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
 
   const handleImageError = () => {
+    console.error(`Failed to load image in modal: ${imageSrc}`);
     setImageError(true);
   };
 
@@ -75,7 +83,7 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
         </div>
         
         {/* Optional caption */}
-        {caption && imageLoaded && (
+        {caption && (imageLoaded || imageError) && (
           <div className="mt-4 bg-white dark:bg-gray-800 p-3 rounded-lg max-w-full">
             <p className="text-gray-700 dark:text-gray-300 text-center">{caption}</p>
           </div>

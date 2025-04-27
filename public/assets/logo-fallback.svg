@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <rect width="240" height="240" fill="#102a43"/>
+  <g fill="#d0d0d0">
+    <!-- Stylized D with car silhouette -->
+    <path d="M60,50 L60,190 L120,190 C155,190 180,165 180,120 C180,75 155,50 120,50 Z M80,70 L115,70 C140,70 155,90 155,120 C155,150 140,170 115,170 L80,170 Z"/>
+    <path d="M100,100 Q130,95 145,115 L155,125 Q157,127 159,125 L165,120 Q120,85 95,100 Z" fill="#22b573"/>
+    
+    <!-- DOYEN text -->
+    <text x="120" y="220" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">DOYEN AUTOS</text>
+    <text x="120" y="235" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">DRIVEN BY EXCELLENCE</text>
+  </g>
+</svg>

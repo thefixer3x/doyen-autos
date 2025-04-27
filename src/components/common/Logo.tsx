@@ -8,8 +8,7 @@ interface LogoProps {
   className?: string;
 }
 
-// Make sure we're declaring the component with the name "Logo"
-const Logo: React.FC<LogoProps> = ({ 
+export const Logo: React.FC<LogoProps> = ({ 
   size = 'medium', 
   isWhite = false,
   className = ''
@@ -17,40 +16,39 @@ const Logo: React.FC<LogoProps> = ({
   // Reference to track if component is mounted
   const isMounted = useRef(true);
   
-  // Define primary logo path
-  const primaryLogo = '/doyen-logo.png'; // Path to the image you shared
-  
   // Define size-specific paths
   const logoSizes = {
     small: '/icons/logo-48.png',
-    medium: primaryLogo,
+    medium: isWhite ? '/doyen-logo-white.png' : '/doyen-logo.png',
     large: '/icons/logo-144.png'
   };
   
   // Ensure size is valid
   const safeSize: LogoSize = (size in logoSizes) ? size : 'medium';
   
-  // Create SVG fallback based on the actual logo design
+  // Create an enhanced SVG fallback that better represents the Doyen logo
   const fallbackLogo = `data:image/svg+xml;base64,${btoa(`
-    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-      <rect width="200" height="200" fill="#0D1A2A"/>
-      <text x="100" y="100" font-family="Arial, sans-serif" font-size="24" 
-            font-weight="bold" fill="#D0D0D0" text-anchor="middle">DOYEN</text>
-      <text x="100" y="130" font-family="Arial, sans-serif" font-size="18" 
-            fill="#D0D0D0" text-anchor="middle">AUTOS</text>
-      <text x="100" y="150" font-family="Arial, sans-serif" font-size="10" 
-            fill="#D0D0D0" text-anchor="middle">DRIVEN BY EXCELLENCE</text>
+    <svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+      <rect width="240" height="240" fill="#102a43"/>
+      <g fill="#d0d0d0">
+        <!-- Stylized D with car silhouette -->
+        <path d="M60,50 L60,190 L120,190 C155,190 180,165 180,120 C180,75 155,50 120,50 Z M80,70 L115,70 C140,70 155,90 155,120 C155,150 140,170 115,170 L80,170 Z"/>
+        <path d="M100,100 Q130,95 145,115 L155,125 Q157,127 159,125 L165,120 Q120,85 95,100 Z" fill="${isWhite ? '#ffffff' : '#22b573'}"/>
+        
+        <!-- DOYEN text -->
+        <text x="120" y="220" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">DOYEN AUTOS</text>
+      </g>
     </svg>
   `)}`;
 
   // Initialize with a safe default
-  const [currentSrc, setCurrentSrc] = useState<string>(isWhite ? "/doyen-logo-white.png" : logoSizes[safeSize]);
+  const [currentSrc, setCurrentSrc] = useState<string>(logoSizes[safeSize]);
   const [usingFallback, setUsingFallback] = useState<boolean>(false);
   
   // Update source when props change
   useEffect(() => {
     if (isMounted.current) {
-      setCurrentSrc(isWhite ? "/doyen-logo-white.png" : logoSizes[safeSize]);
+      setCurrentSrc(logoSizes[safeSize]);
     }
     
     return () => {
@@ -71,6 +69,13 @@ const Logo: React.FC<LogoProps> = ({
       console.error('Critical error in logo component:', err);
     }
   };
+
+  // Calculate dimensions based on size
+  const dimensions = {
+    small: { width: 48, height: 48 },
+    medium: { width: 150, height: 50 },
+    large: { width: 144, height: 144 }
+  }[safeSize];
   
   return (
     <img 
@@ -78,6 +83,8 @@ const Logo: React.FC<LogoProps> = ({
       alt="Doyen Autos" 
       onError={handleError}
       className={className}
+      width={dimensions.width}
+      height={dimensions.height}
       style={{ maxWidth: '100%', height: 'auto' }}
     />
   );
@@ -85,4 +92,3 @@ const Logo: React.FC<LogoProps> = ({
 
 // Both types of exports to make sure it works regardless of how it's imported
 export default Logo;
-export { Logo };
