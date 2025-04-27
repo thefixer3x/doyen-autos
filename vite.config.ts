@@ -25,24 +25,24 @@ export default defineConfig({
         ],
       },
       png: {
-        quality: 75,
+        quality: 80,
+        compressionLevel: 9,
       },
       jpeg: {
-        quality: 75,
+        quality: 80,
+        progressive: true,
       },
       jpg: {
-        quality: 75,
+        quality: 80,
+        progressive: true,
       },
       webp: {
         lossless: false,
-        quality: 75,
-        method: 4,
+        quality: 85,
+        method: 6,
       },
     }),
   ],
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
   build: {
     rollupOptions: {
       output: {
@@ -53,5 +53,16 @@ export default defineConfig({
       },
     },
     chunkSizeWarningLimit: 1000,
+    // Cache-busting strategy
+    assetsDir: 'assets',
+    assetsInlineLimit: 4096, // 4kb
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'lucide-react'],
+  },
+  server: {
+    headers: {
+      'Cache-Control': 'public, max-age=31536000',
+    },
   },
 });

@@ -4,86 +4,271 @@
 
 @layer base {
   :root {
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #C0C0C0;
-    --bg-accent: #008751;
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --text-accent: #008751;
+    /* Material Design color palette */
+    --color-primary: 33 150 243;   /* Blue 500 */
+    --color-primary-light: 100 181 246;  /* Blue 300 */
+    --color-primary-dark: 25 118 210;   /* Blue 700 */
+    --color-secondary: 156 39 176;  /* Purple 500 */
+    --color-surface: 255 255 255;   /* White */
+    --color-background: 250 250 250; /* Grey 50 */
+    --color-error: 244 67 54;      /* Red 500 */
+    --color-success: 76 175 80;    /* Green 500 */
+    --color-warning: 255 152 0;    /* Orange 500 */
+    --color-info: 3 169 244;      /* Light Blue 500 */
   }
 
-  .dark {
-    --bg-primary: #121212;
-    --bg-secondary: #36454F;
-    --bg-accent: rgba(0, 135, 81, 0.8);
-    --text-primary: #E5E5E5;
-    --text-secondary: #A0A0A0;
-    --text-accent: rgba(0, 135, 81, 0.8);
-  }
-
+  /* Material Design typography */
   html {
     font-family: 'Inter', system-ui, sans-serif;
-  }
-  
-  body {
-    @apply bg-primary text-primary transition-colors duration-300;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-medium tracking-tight text-primary transition-colors duration-300;
+  .font-regular {
+    font-weight: 400;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .font-medium {
+    font-weight: 500;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .font-semibold {
+    font-weight: 600;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .font-bold {
+    font-weight: 700;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1 {
+    @apply text-5xl font-light tracking-tight mb-4;
+  }
+
+  h2 {
+    @apply text-4xl font-light tracking-tight mb-4;
+  }
+
+  h3 {
+    @apply text-3xl font-regular tracking-normal mb-3;
+  }
+
+  h4 {
+    @apply text-2xl font-medium tracking-normal mb-3;
+  }
+
+  h5 {
+    @apply text-xl font-medium tracking-normal mb-2;
+  }
+
+  h6 {
+    @apply text-lg font-medium tracking-normal mb-2;
+  }
+
+  body {
+    @apply text-base text-gray-900 bg-gray-50;
   }
 }
 
 @layer components {
-  .card {
-    @apply bg-white rounded-lg border border-gray-100 shadow-sm
-           dark:bg-gray-800 dark:border-gray-700 transition-all duration-200;
+  /* Material Design elevation shadows */
+  .elevation-0 {
+    box-shadow: none;
   }
 
-  .card:hover {
+  .elevation-1 {
+    @apply shadow-sm;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+
+  .elevation-2 {
+    @apply shadow;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12);
+  }
+
+  .elevation-3 {
+    @apply shadow-md;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.10);
+  }
+
+  .elevation-4 {
     @apply shadow-lg;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.05);
   }
 
-  .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded-md
-           font-medium transition-colors duration-200 focus:outline-none
-           focus:ring-2 focus:ring-offset-2 focus:ring-accent-500;
+  .elevation-5 {
+    @apply shadow-xl;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
   }
 
+  /* Material Design buttons */
   .btn-primary {
-    @apply bg-primary-500 text-white hover:bg-primary-600
-           dark:bg-primary-600 dark:hover:bg-primary-700;
+    @apply bg-primary-500 text-white hover:bg-primary-600 
+           focus:ring-primary-500 shadow-md hover:shadow-lg
+           active:bg-primary-700 disabled:bg-gray-300;
   }
 
   .btn-secondary {
-    @apply bg-white text-gray-700 border border-gray-300
-           hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200
-           dark:border-gray-600 dark:hover:bg-gray-700;
+    @apply bg-secondary-500 text-white hover:bg-secondary-600 
+           focus:ring-secondary-500 shadow-md hover:shadow-lg
+           active:bg-secondary-700 disabled:bg-gray-300;
   }
 
   .btn-accent {
-    @apply bg-accent-500 text-white hover:bg-accent-600
-           dark:bg-accent-600 dark:hover:bg-accent-700;
+    @apply bg-accent-500 text-white hover:bg-accent-600 
+           focus:ring-accent-500 shadow-md hover:shadow-lg
+           active:bg-accent-700 disabled:bg-gray-300;
   }
 
+  /* Material Design cards */
+  .card {
+    @apply bg-white rounded-lg elevation-1 transition-shadow duration-200;
+  }
+
+  .card:hover {
+    @apply elevation-2;
+  }
+
+  /* Material Design form elements */
+  .input {
+    @apply w-full px-4 py-2 rounded-md border border-gray-300
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+           placeholder-gray-400 transition-all duration-200;
+  }
+
+  /* Badges */
   .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    @apply inline-flex items-center justify-center px-2.5 py-0.5
+           text-xs font-medium rounded-full;
   }
 
   .badge-success {
-    @apply bg-accent-100 text-accent-800 dark:bg-accent-900 dark:text-accent-300;
+    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400;
   }
 
   .badge-warning {
-    @apply bg-warning-100 text-warning-800 dark:bg-warning-900 dark:text-warning-300;
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400;
   }
 
   .badge-error {
-    @apply bg-error-100 text-error-800 dark:bg-error-900 dark:text-error-300;
+    @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400;
+  }
+
+  .badge-info {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400;
+  }
+
+  /* Hide scrollbar */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
   
-  .badge-info {
-    @apply bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300;
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+  }
+
+  /* Material Design navigation */
+  .nav-item {
+    @apply px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md
+           transition-colors duration-200 cursor-pointer;
+  }
+
+  .nav-item-active {
+    @apply text-primary-500 bg-primary-50;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animated gradient background */
+  .animated-gradient {
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Halo effect */
+  .halo {
+    position: relative;
+  }
+  
+  .halo::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: inherit;
+    background: inherit;
+    filter: blur(10px);
+    opacity: 0.7;
+    z-index: -1;
+  }
+}
+
+/* Material Design responsive breakpoints */
+@screen sm {
+  .container {
+    @apply max-w-screen-sm;
+  }
+}
+
+@screen md {
+  .container {
+    @apply max-w-screen-md;
+  }
+}
+
+@screen lg {
+  .container {
+    @apply max-w-screen-lg;
+  }
+}
+
+@screen xl {
+  .container {
+    @apply max-w-screen-xl;
   }
 }
 
@@ -94,13 +279,9 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  @apply bg-gray-100;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 rounded-full dark:bg-gray-700;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400 dark:bg-gray-600;
+  @apply bg-gray-400 rounded-full hover:bg-gray-500;
 }

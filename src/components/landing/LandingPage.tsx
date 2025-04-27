@@ -1,5 +1,6 @@
-import React, { lazy, Suspense } from 'react';
-import { Search, ChevronRight } from 'lucide-react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
+import { Search, ChevronRight, ChevronDown, ArrowRight } from 'lucide-react';
+import { Button } from '../ui/Button';
 
 // Lazy load components below the fold
 const FeaturedVehicles = lazy(() => import('./sections/FeaturedVehicles'));
@@ -10,56 +11,211 @@ const Financing = lazy(() => import('./sections/Financing'));
 const Testimonials = lazy(() => import('./sections/Testimonials'));
 
 export const LandingPage: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const parallaxStyle = {
+    transform: `translateY(${scrollY * 0.5}px)`,
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[400px] md:h-[500px] bg-gradient-to-br from-navy-600 to-navy-900">
-        <div className="container mx-auto px-4 h-full flex flex-col items-center justify-center text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-4 md:mb-6">
-            Find Your Perfect Ride
+      <section className="relative h-[600px] md:h-[700px] overflow-hidden">
+        {/* Background Gradient & Image */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-900/90 to-navy-700/80 z-10"></div>
+        <div 
+          className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg')] bg-cover bg-center"
+          style={parallaxStyle}
+        ></div>
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 h-full flex flex-col items-center justify-center text-center relative z-20">
+          <h1 
+            className={`text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 md:mb-6 transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            Drive Your <span className="text-accent-400">Dreams</span> Today
           </h1>
-          <p className="text-base md:text-lg lg:text-xl text-white/90 mb-6 md:mb-8 max-w-2xl px-4">
-            The largest selection of quality vehicles in Lagos, with transparent pricing and financing options.
+          <p 
+            className={`text-lg md:text-xl lg:text-2xl text-white/90 mb-8 md:mb-10 max-w-2xl transition-all duration-1000 delay-300 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            Lagos's premier automobile marketplace with unmatched selection, transparent pricing, and innovative financing options.
           </p>
-          <div className="w-full max-w-3xl bg-white rounded-full shadow-lg p-2 flex items-center mx-4">
-            <Search className="text-gray-400 ml-2 md:ml-4 flex-shrink-0" size={20} />
-            <input
-              type="text"
-              placeholder="Search by make, model, or features..."
-              className="flex-1 px-2 md:px-4 py-2 focus:outline-none text-gray-800 text-sm md:text-base w-full"
-              aria-label="Search vehicles"
-            />
-            <button className="bg-accent-500 hover:bg-accent-600 text-white font-semibold px-4 md:px-8 py-2 rounded-full transition-colors text-sm md:text-base whitespace-nowrap">
-              Search
+          
+          <div 
+            className={`w-full max-w-3xl transition-all duration-1000 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            <div className="w-full bg-white rounded-full shadow-lg p-2 flex items-center mx-auto">
+              <Search className="text-gray-400 ml-2 md:ml-4 flex-shrink-0" size={20} />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by make, model, or features..."
+                className="flex-1 px-2 md:px-4 py-2 focus:outline-none text-gray-800 text-sm md:text-base w-full rounded-full"
+                aria-label="Search vehicles"
+              />
+              <Button 
+                className="bg-accent-500 hover:bg-accent-600 text-white font-semibold px-4 md:px-8 py-2 rounded-full transition-colors text-sm md:text-base whitespace-nowrap"
+              >
+                Search Now
+              </Button>
+            </div>
+          </div>
+          
+          <div 
+            className={`flex flex-col md:flex-row gap-4 mt-8 transition-all duration-1000 delay-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            <Button 
+              className="bg-accent-500 hover:bg-accent-600 text-white rounded-full px-8 py-3 font-semibold flex items-center"
+            >
+              Browse Inventory <ArrowRight className="ml-2" size={18} />
+            </Button>
+            <Button 
+              className="bg-transparent border-2 border-white text-white hover:bg-white/10 rounded-full px-8 py-3 font-semibold flex items-center"
+            >
+              Sell Your Car <ArrowRight className="ml-2" size={18} />
+            </Button>
+          </div>
+          
+          <div 
+            className={`absolute bottom-8 left-0 right-0 text-center transition-all duration-1000 delay-1000 ${
+              isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <button
+              onClick={() => {
+                document.getElementById('featured-vehicles')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-white animate-bounce p-2"
+              aria-label="Scroll down"
+            >
+              <ChevronDown size={36} />
             </button>
           </div>
         </div>
       </section>
 
+      {/* Quick Links Section */}
+      <section className="bg-white py-6 shadow-md sticky top-16 z-30 border-b border-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="flex overflow-x-auto hide-scrollbar gap-4 md:gap-8 md:justify-center">
+            <QuickLink href="#featured-vehicles" label="Featured Vehicles" />
+            <QuickLink href="#features" label="Why Choose Us" />
+            <QuickLink href="#ev-initiative" label="EV Initiative" />
+            <QuickLink href="#our-story" label="Our Story" />
+            <QuickLink href="#financing" label="Financing" />
+            <QuickLink href="#testimonials" label="Testimonials" />
+          </div>
+        </div>
+      </section>
+
       {/* Suspense boundaries for lazy-loaded sections */}
-      <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
-        <FeaturedVehicles />
-      </Suspense>
+      <div id="featured-vehicles">
+        <Suspense fallback={<LoadingSection title="Featured Vehicles" />}>
+          <FeaturedVehicles />
+        </Suspense>
+      </div>
 
-      <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
-        <Features />
-      </Suspense>
+      <div id="features">
+        <Suspense fallback={<LoadingSection title="Why Choose Us" />}>
+          <Features />
+        </Suspense>
+      </div>
 
-      <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
-        <GreenInitiative />
-      </Suspense>
+      <div id="ev-initiative">
+        <Suspense fallback={<LoadingSection title="EV Initiative" />}>
+          <GreenInitiative />
+        </Suspense>
+      </div>
 
-      <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
-        <OurStory />
-      </Suspense>
+      <div id="our-story">
+        <Suspense fallback={<LoadingSection title="Our Story" />}>
+          <OurStory />
+        </Suspense>
+      </div>
 
-      <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
-        <Financing />
-      </Suspense>
+      <div id="financing">
+        <Suspense fallback={<LoadingSection title="Financing Options" />}>
+          <Financing />
+        </Suspense>
+      </div>
 
-      <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
-        <Testimonials />
-      </Suspense>
+      <div id="testimonials">
+        <Suspense fallback={<LoadingSection title="Customer Testimonials" />}>
+          <Testimonials />
+        </Suspense>
+      </div>
+
+      {/* Newsletter Subscription */}
+      <section className="py-16 bg-gradient-to-r from-navy-800 to-navy-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Stay Updated</h2>
+            <p className="text-lg md:text-xl mb-8 text-white/80">
+              Subscribe to our newsletter for exclusive deals, new arrivals, and automotive insights.
+            </p>
+            <div className="flex flex-col md:flex-row gap-3 max-w-xl mx-auto">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-grow px-5 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-accent-400 text-gray-800"
+              />
+              <Button className="bg-accent-500 hover:bg-accent-600 text-white rounded-full px-6 py-3 font-semibold">
+                Subscribe
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
+
+interface QuickLinkProps {
+  href: string;
+  label: string;
+}
+
+const QuickLink: React.FC<QuickLinkProps> = ({ href, label }) => {
+  return (
+    <a
+      href={href}
+      className="text-gray-600 hover:text-accent-600 whitespace-nowrap px-4 py-2 font-medium transition-colors duration-200 flex items-center"
+    >
+      {label}
+      <ChevronRight size={16} className="ml-1" />
+    </a>
+  );
+};
+
+const LoadingSection: React.FC<{ title: string }> = ({ title }) => {
+  return (
+    <div className="py-16 flex flex-col items-center justify-center">
+      <div className="w-16 h-16 border-4 border-accent-300 border-t-accent-600 rounded-full animate-spin mb-4"></div>
+      <h3 className="text-xl font-medium text-gray-700">Loading {title}...</h3>
+    </div>
+  );
+};
+
+export default LandingPage;

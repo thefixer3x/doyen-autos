@@ -1,36 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Logo } from '../common/Logo';
 
 export const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <a href="/" className="flex items-center">
-            <img
-              src="/doyen-logo.png"
-              alt="Doyen Autos"
-              className="h-8 w-auto"
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAoCAYAAAA16j4lAAADJElEQVR4nO2cT2sTQRjGn9m62rrVVmvFqiheCp704EFBDx5E/Ac96cWTX8GjFEE8ehE/gFAPHgQP6kHx5MWDKA0UihbaJN3NxmTiLBo3u5PZzGzmeX4Q2s7OvO/uvO+zM5NNE4AIgmDe9/2LQRBcbTabZ4UQszEVQxDiOEYURfB9H1EUwfM8eJ6HMAyRpinSNEUQBEiSBEmSII5jJEmCOI6RZRnyPEee58jzHFJKSCmRZRnyPIeUElmWQSmFPM+hlIJSCkopKKWQZRmyLEOe51BKQSmFPM+RZRmUUkjTFGmaIk1TJEmCJEkQxzGiKEIURQjDEEEQwPd9+L6PKIoQBAE8z4Pv+/A8D2EYIgxDBEGAMAyRJAmSJEGSJIjjGHEcI0kSJEmCOI4RxzHiOEYcx4jjGHEcI45jxHGMJEkQxzGSJEEcx4jjGHEcI45jJEmCJEkQxzGSJEEURQjDEJ7nwfd9hGGIIAgQBAF834fneQjDEJ7nwfM8hGGIIAgQBAE8z4Pv+/B9H77vw/d9eJ6HMAzh+z6CIEAQBAiCAEEQwPd9+L6PIAgQBAF834fneQiCAJ7nwfd9eJ6HMAzheR6CIEAQBPvXDcMQYRgiDEOEYYggCBAEAYIggO/78H0fQRAgCAIEQYAgCBAEAYIgQBAECIIAvh8gDEMEQYAwDBEEAYIgQBAE8H0fQRAgCAL4vg/f9+H7PnzfRxAECIIAnufB8zx4ngfP8+B5HjzPg+d58DwPnufB8zx4ngff9+H7PnzfRxAECIIAQRAgCAIEQYAwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDBGGIcIwRBiGCMMQYRgiDEOEYYgwDPEbCZqxE+T5RkIAAAAASUVORK5CYII=';
-              }}
-            />
+            <Logo className="h-10 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-gray-600 hover:text-gray-900">Home</a>
-            <a href="/inventory" className="text-gray-600 hover:text-gray-900">Inventory</a>
-            <a href="/services" className="text-gray-600 hover:text-gray-900">Services</a>
-            <a href="/about" className="text-gray-600 hover:text-gray-900">About</a>
-            <a href="/contact" className="text-gray-600 hover:text-gray-900">Contact</a>
+            <a href="/" className="text-gray-600 hover:text-gray-900 font-medium">Home</a>
+            <a href="/inventory" className="text-gray-600 hover:text-gray-900 font-medium">Inventory</a>
+            <a href="/services" className="text-gray-600 hover:text-gray-900 font-medium">Services</a>
+            <a href="/about" className="text-gray-600 hover:text-gray-900 font-medium">About</a>
+            <a href="/contact" className="text-gray-600 hover:text-gray-900 font-medium">Contact</a>
             <a
               href="/book"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-accent-600 hover:bg-accent-700"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-accent-600 hover:bg-accent-700"
             >
               Book Appointment
             </a>
@@ -51,7 +56,7 @@ export const Header: React.FC = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden bg-white shadow-lg">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="/" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Home</a>
             <a href="/inventory" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Inventory</a>

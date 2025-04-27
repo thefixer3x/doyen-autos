@@ -1,0 +1,57 @@
+{
+  "name": "Doyen Autos Logo Resources",
+  "description": "Official logo assets for Doyen Autos in various sizes and formats",
+  "version": "1.0.0",
+  "icons": [
+    {
+      "size": "16x16",
+      "filename": "favicon-16x16.png",
+      "purpose": "favicon"
+    },
+    {
+      "size": "32x32",
+      "filename": "favicon-32x32.png",
+      "purpose": "favicon"
+    },
+    {
+      "size": "48x48",
+      "filename": "logo-48.png",
+      "purpose": "general"
+    },
+    {
+      "size": "96x96",
+      "filename": "logo-96.png",
+      "purpose": "general"
+    },
+    {
+      "size": "144x144",
+      "filename": "logo-144.png",
+      "purpose": "general"
+    },
+    {
+      "size": "192x192",
+      "filename": "android-chrome-192x192.png",
+      "purpose": "android"
+    },
+    {
+      "size": "512x512",
+      "filename": "android-chrome-512x512.png",
+      "purpose": "android"
+    },
+    {
+      "size": "180x180",
+      "filename": "apple-touch-icon.png",
+      "purpose": "ios"
+    },
+    {
+      "size": "512x512",
+      "filename": "logo-512.png",
+      "purpose": "general"
+    }
+  ],
+  "usage": {
+    "favicon": "Use favicon-16x16.png and favicon-32x32.png for browser tab icons",
+    "mobile": "Use android-chrome-192x192.png, android-chrome-512x512.png, and apple-touch-icon.png for mobile devices",
+    "general": "Use logo-48.png for small UI elements, logo-96.png for standard display, logo-144.png for high-DPI displays, and logo-512.png for large displays or printing"
+  }
+}

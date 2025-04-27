@@ -1,0 +1,13 @@
+# robots.txt for Doyen Autos
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas if they exist
+Disallow: /admin/
+Disallow: /private/
+Disallow: /login/
+Disallow: /checkout/
+
+# Sitemap location
+Sitemap: https://www.doyenautos.com/sitemap.xml
