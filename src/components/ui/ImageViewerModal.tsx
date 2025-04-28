@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Modal } from './Modal';
 import { cn } from '../../utils/cn';
 
@@ -21,7 +21,6 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
   const [imageLoaded, setImageLoaded] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
 
-  // Reset states when the image source changes or modal opens
   React.useEffect(() => {
     if (isOpen) {
       setImageLoaded(false);
@@ -46,7 +45,6 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
       showCloseButton={false}
     >
       <div className="relative flex flex-col items-center">
-        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-full bg-black/40 hover:bg-black/60 text-white z-20 transition-colors"
@@ -55,7 +53,6 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
           <X size={24} />
         </button>
         
-        {/* Image container */}
         <div className="relative w-full h-full flex items-center justify-center">
           {!imageLoaded && !imageError && (
             <div className="absolute inset-0 flex items-center justify-center">
@@ -82,7 +79,6 @@ export const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
           )}
         </div>
         
-        {/* Optional caption */}
         {caption && (imageLoaded || imageError) && (
           <div className="mt-4 bg-white dark:bg-gray-800 p-3 rounded-lg max-w-full">
             <p className="text-gray-700 dark:text-gray-300 text-center">{caption}</p>

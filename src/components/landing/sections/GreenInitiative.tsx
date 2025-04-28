@@ -40,7 +40,7 @@ const GreenInitiative: React.FC = () => {
     >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-accent-100 rounded-full opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-100 rounded-full opacity-30 translate-x-1/3 translate-y-1/3"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-100 rounded-full opacity-30 translate-x-1/2 translate-y-1/2"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center text-center mb-16">
@@ -83,9 +83,7 @@ const GreenInitiative: React.FC = () => {
           "mt-16 text-center bg-gradient-to-r from-accent-500 to-accent-600 py-10 px-8 rounded-3xl shadow-xl relative overflow-hidden transition-all duration-1000",
           isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         )}>
-          <div className="absolute inset-0 bg-accent-500 opacity-30">
-            <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
-          </div>
+          <div className="absolute inset-0 bg-accent-500 opacity-30"></div>
           
           <div className="relative z-10">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">

@@ -2,10 +2,15 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import { checkFeatureSupport } from './utils/browser-detection';
+import { reportWebVitals } from './utils/performance';
 
-// Preload key assets
+// Check browser features
+const features = checkFeatureSupport();
+console.log('Browser features:', features);
+
+// Preload critical assets
 const preloadAssets = async () => {
-  // Preload critical logos
   const logoUrls = [
     '/doyen-logo.png', 
     '/doyen-logo-white.png',
@@ -13,22 +18,34 @@ const preloadAssets = async () => {
     '/icons/logo-144.png'
   ];
   
-  // Preload each image
-  logoUrls.forEach(url => {
+  const preloadPromises = logoUrls.map(url => {
     const img = new Image();
-    img.src = url;
-    // Add error handler to avoid console errors during preload
-    img.onerror = () => {
-      console.warn(`Failed to preload image: ${url}`);
-    };
+    return new Promise((resolve) => {
+      img.onload = img.onerror = resolve;
+      img.src = url;
+    });
   });
+
+  await Promise.all(preloadPromises);
 };
 
-// Call the preload function before rendering
-preloadAssets().then(() => {
-  createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
-});
+// Initialize app with performance monitoring
+const initApp = async () => {
+  try {
+    await preloadAssets();
+    
+    createRoot(document.getElementById('root')!).render(
+      <StrictMode>
+        <App />
+      </StrictMode>
+    );
+
+    // Report initial page load metrics
+    const metrics = performance.getEntriesByType('navigation')[0];
+    reportWebVitals(metrics);
+  } catch (error) {
+    console.error('Error initializing app:', error);
+  }
+};
+
+initApp();

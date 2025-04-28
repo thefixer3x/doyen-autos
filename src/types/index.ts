@@ -1,30 +1,3 @@
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  avatar: string;
-  role: string;
-  status: 'active' | 'inactive';
-}
-
-export interface Notification {
-  id: string;
-  title: string;
-  message: string;
-  type: 'info' | 'success' | 'warning' | 'error';
-  read: boolean;
-  createdAt: string;
-}
-
-export interface StatCard {
-  id: string;
-  title: string;
-  value: string | number;
-  change: number;
-  icon: string;
-  color: string;
-}
-
 export interface TableData {
   id: string;
   customer: string;

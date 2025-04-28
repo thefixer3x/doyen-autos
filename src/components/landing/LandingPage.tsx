@@ -1,9 +1,10 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Search, ChevronRight, ChevronDown, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 // Lazy load components below the fold
 const FeaturedVehicles = lazy(() => import('./sections/FeaturedVehicles'));
+const ExclusiveEVShowcase = lazy(() => import('./sections/ExclusiveEVShowcase'));
 const Features = lazy(() => import('./sections/Features'));
 const GreenInitiative = lazy(() => import('./sections/GreenInitiative'));
 const OurStory = lazy(() => import('./sections/OurStory'));
@@ -11,11 +12,11 @@ const Financing = lazy(() => import('./sections/Financing'));
 const Testimonials = lazy(() => import('./sections/Testimonials'));
 
 export const LandingPage: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [scrollY, setScrollY] = useState(0);
+  const [isVisible, setIsVisible] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [scrollY, setScrollY] = React.useState(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setIsVisible(true);
     
     const handleScroll = () => {
@@ -31,17 +32,15 @@ export const LandingPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen dark:bg-navy-900">
       {/* Hero Section */}
       <section className="relative h-[600px] md:h-[700px] overflow-hidden">
-        {/* Background Gradient & Image */}
         <div className="absolute inset-0 bg-gradient-to-br from-navy-900/90 to-navy-700/80 z-10"></div>
         <div 
           className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg')] bg-cover bg-center"
           style={parallaxStyle}
         ></div>
         
-        {/* Content */}
         <div className="container mx-auto px-4 h-full flex flex-col items-center justify-center text-center relative z-20">
           <h1 
             className={`text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 md:mb-6 transition-all duration-1000 ${
@@ -63,14 +62,14 @@ export const LandingPage: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="w-full bg-white rounded-full shadow-lg p-2 flex items-center mx-auto">
-              <Search className="text-gray-400 ml-2 md:ml-4 flex-shrink-0" size={20} />
+            <div className="w-full bg-white dark:bg-navy-800 rounded-full shadow-lg p-2 flex items-center mx-auto">
+              <Search className="text-gray-400 dark:text-gray-500 ml-2 md:ml-4 flex-shrink-0" size={20} />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by make, model, or features..."
-                className="flex-1 px-2 md:px-4 py-2 focus:outline-none text-gray-800 text-sm md:text-base w-full rounded-full"
+                className="flex-1 px-2 md:px-4 py-2 focus:outline-none text-gray-800 dark:text-gray-200 dark:bg-navy-800 text-sm md:text-base w-full rounded-full"
                 aria-label="Search vehicles"
               />
               <Button 
@@ -117,10 +116,11 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* Quick Links Section */}
-      <section className="bg-white py-6 shadow-md sticky top-16 z-30 border-b border-gray-100">
+      <section className="bg-white dark:bg-navy-900 py-6 shadow-md sticky top-16 z-30 border-b border-gray-100 dark:border-navy-700">
         <div className="container mx-auto px-4">
           <div className="flex overflow-x-auto hide-scrollbar gap-4 md:gap-8 md:justify-center">
             <QuickLink href="#featured-vehicles" label="Featured Vehicles" />
+            <QuickLink href="#ev-showcase" label="Electric Vehicles" />
             <QuickLink href="#features" label="Why Choose Us" />
             <QuickLink href="#ev-initiative" label="EV Initiative" />
             <QuickLink href="#our-story" label="Our Story" />
@@ -134,6 +134,12 @@ export const LandingPage: React.FC = () => {
       <div id="featured-vehicles">
         <Suspense fallback={<LoadingSection title="Featured Vehicles" />}>
           <FeaturedVehicles />
+        </Suspense>
+      </div>
+
+      <div id="ev-showcase">
+        <Suspense fallback={<LoadingSection title="Electric Vehicles" />}>
+          <ExclusiveEVShowcase />
         </Suspense>
       </div>
 
@@ -179,7 +185,7 @@ export const LandingPage: React.FC = () => {
               <input
                 type="email"
                 placeholder="Your email address"
-                className="flex-grow px-5 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-accent-400 text-gray-800"
+                className="flex-grow px-5 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-accent-400 text-gray-800 dark:text-gray-200 dark:bg-navy-800"
               />
               <Button className="bg-accent-500 hover:bg-accent-600 text-white rounded-full px-6 py-3 font-semibold">
                 Subscribe
@@ -201,7 +207,7 @@ const QuickLink: React.FC<QuickLinkProps> = ({ href, label }) => {
   return (
     <a
       href={href}
-      className="text-gray-600 hover:text-accent-600 whitespace-nowrap px-4 py-2 font-medium transition-colors duration-200 flex items-center"
+      className="text-gray-600 dark:text-gray-300 hover:text-accent-600 dark:hover:text-accent-400 whitespace-nowrap px-4 py-2 font-medium transition-colors duration-200 flex items-center"
     >
       {label}
       <ChevronRight size={16} className="ml-1" />
@@ -213,7 +219,7 @@ const LoadingSection: React.FC<{ title: string }> = ({ title }) => {
   return (
     <div className="py-16 flex flex-col items-center justify-center">
       <div className="w-16 h-16 border-4 border-accent-300 border-t-accent-600 rounded-full animate-spin mb-4"></div>
-      <h3 className="text-xl font-medium text-gray-700">Loading {title}...</h3>
+      <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300">Loading {title}...</h3>
     </div>
   );
 };

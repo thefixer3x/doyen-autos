@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Blog Landing Page -->
+  <url>
+    <loc>https://www.doyenautos.com/blog</loc>
+    <lastmod>2025-06-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- EV Revolution Article -->
+  <url>
+    <loc>https://www.doyenautos.com/blog/ev-revolution-in-nigeria</loc>
+    <lastmod>2025-06-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg</image:loc>
+      <image:title>Electric Vehicles in Nigeria</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Financing Article -->
+  <url>
+    <loc>https://www.doyenautos.com/blog/financing-your-dream-car</loc>
+    <lastmod>2025-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/164527/pexels-photo-164527.jpeg</image:loc>
+      <image:title>Financing Your Dream Car</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Maintenance Tips Article -->
+  <url>
+    <loc>https://www.doyenautos.com/blog/maintenance-tips</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3806252/pexels-photo-3806252.jpeg</image:loc>
+      <image:title>Vehicle Maintenance Tips</image:title>
+    </image:image>
+  </url>
+  
+  <!-- EV Benefits Article -->
+  <url>
+    <loc>https://www.doyenautos.com/blog/benefits-of-electric-vehicles</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3802512/pexels-photo-3802512.jpeg</image:loc>
+      <image:title>Benefits of Electric Vehicles</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Luxury Cars Article -->
+  <url>
+    <loc>https://www.doyenautos.com/blog/luxury-cars-guide</loc>
+    <lastmod>2025-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/136872/pexels-photo-136872.jpeg</image:loc>
+      <image:title>Luxury Cars Guide</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Car Buying Guide Article -->
+  <url>
+    <loc>https://www.doyenautos.com/blog/car-buying-guide-nigeria</loc>
+    <lastmod>2025-05-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg</image:loc>
+      <image:title>Car Buying Guide in Nigeria</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Car Insurance Article -->
+  <url>
+    <loc>https://www.doyenautos.com/blog/car-insurance-tips</loc>
+    <lastmod>2025-05-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/7821487/pexels-photo-7821487.jpeg</image:loc>
+      <image:title>Car Insurance Tips</image:title>
+    </image:image>
+  </url>
+</urlset>

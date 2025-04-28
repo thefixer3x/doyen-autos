@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Tesla Model Y -->
+  <url>
+    <loc>https://www.doyenautos.com/vehicle/tesla-model-y</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg</image:loc>
+      <image:title>Tesla Model Y - Front View</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg</image:loc>
+      <image:title>Tesla Model Y - Side View</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Toyota Camry XSE -->
+  <url>
+    <loc>https://www.doyenautos.com/vehicle/toyota-camry-xse</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg</image:loc>
+      <image:title>Toyota Camry XSE - Front View</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg</image:loc>
+      <image:title>Toyota Camry XSE - Interior View</image:title>
+    </image:image>
+  </url>
+  
+  <!-- BMW i4 eDrive40 -->
+  <url>
+    <loc>https://www.doyenautos.com/vehicle/bmw-i4</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg</image:loc>
+      <image:title>BMW i4 eDrive40 - Front View</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg</image:loc>
+      <image:title>BMW i4 eDrive40 - Side View</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Honda Accord EX-L -->
+  <url>
+    <loc>https://www.doyenautos.com/vehicle/honda-accord</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/892522/pexels-photo-892522.jpeg</image:loc>
+      <image:title>Honda Accord EX-L - Front View</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg</image:loc>
+      <image:title>Honda Accord EX-L - Side View</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Porsche Taycan Turbo S -->
+  <url>
+    <loc>https://www.doyenautos.com/vehicle/porsche-taycan</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3802512/pexels-photo-3802512.jpeg</image:loc>
+      <image:title>Porsche Taycan Turbo S - Front View</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/136872/pexels-photo-136872.jpeg</image:loc>
+      <image:title>Porsche Taycan Turbo S - Side View</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Ford F-150 XLT -->
+  <url>
+    <loc>https://www.doyenautos.com/vehicle/ford-f150</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg</image:loc>
+      <image:title>Ford F-150 XLT - Front View</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg</image:loc>
+      <image:title>Ford F-150 XLT - Side View</image:title>
+    </image:image>
+  </url>
+
+</urlset>

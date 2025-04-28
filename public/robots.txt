@@ -1,13 +1,50 @@
 # robots.txt for Doyen Autos
 
+# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Disallow admin and private areas if they exist
+# Protect private areas
 Disallow: /admin/
 Disallow: /private/
 Disallow: /login/
+Disallow: /account/
 Disallow: /checkout/
+Disallow: /api/
+Disallow: /dashboard/
 
-# Sitemap location
+# Protect draft content
+Disallow: /blog/drafts/
+Disallow: /vehicles/pending/
+
+# Rate limit crawling to avoid server overload
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: Bingbot
+Crawl-delay: 1  
+
+User-agent: Slurp
+Crawl-delay: 2
+
+# Prevent media crawlers from high-bandwidth resources
+User-agent: Googlebot-Image
+Allow: /icons/
+Allow: /doyen-logo.png
+Allow: /doyen-logo-white.png
+Disallow: /assets/high-res/
+
+# Block specific low-quality crawlers
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Sitemap locations
 Sitemap: https://www.doyenautos.com/sitemap.xml
+Sitemap: https://www.doyenautos.com/vehicle-sitemap.xml
+Sitemap: https://www.doyenautos.com/blog-sitemap.xml

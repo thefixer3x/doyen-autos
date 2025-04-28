@@ -48,14 +48,20 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'lucide-react'],
-          chart: ['chart.js', 'react-chartjs-2'],
         },
       },
     },
     chunkSizeWarningLimit: 1000,
-    // Cache-busting strategy
     assetsDir: 'assets',
-    assetsInlineLimit: 4096, // 4kb
+    assetsInlineLimit: 4096,
+    sourcemap: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'lucide-react'],

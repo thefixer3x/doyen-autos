@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '../../utils/cn';
+import { handleImageError } from '../../utils/image-helpers';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -22,42 +23,28 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(false);
 
-  // Check if the image source is a base64 data URI
   const isDataUri = src.startsWith('data:');
-  
-  // Generate WebP URL if the source is a JPEG or PNG and not a data URI
   const webpSrc = !isDataUri && src.match(/\.(jpe?g|png)$/i) ? src.replace(/\.(jpe?g|png)$/i, '.webp') : null;
 
-  // Create a function to handle the image load event
   const handleLoad = () => {
     setIsLoading(false);
   };
 
-  // Create a function to handle the image error event
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.log('🔍 Image error handler called');
-    try {
-      console.error(`Image failed to load: ${src}`);
-      setIsLoading(false);
-      setError(true);
-      
-      // Call the onError prop if it exists
-      if (props.onError) {
-        props.onError(e);
-      }
-    } catch (err) {
-      console.error('Error in OptimizedImage handleError:', err);
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    setIsLoading(false);
+    setError(true);
+    
+    if (props.onError) {
+      props.onError(e);
     }
   };
 
-  // Add srcset for responsive images if width is provided
   const generateSrcSet = () => {
     if (isDataUri || !width) return undefined;
     
     const baseSrc = src.replace(/\.(jpe?g|png)$/i, '');
     const ext = src.match(/\.(jpe?g|png)$/i)?.[0] || '.jpg';
     
-    // Only generate srcSet if not a data URI
     return `${src} 1x, ${baseSrc}@2x${ext} 2x`;
   };
 
@@ -69,7 +56,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     loading: priority ? 'eager' : 'lazy',
     decoding: "async" as "async" | "sync" | "auto",
     onLoad: handleLoad,
-    onError: handleError,
+    onError: handleImageError,
     srcSet: generateSrcSet(),
     className: cn(
       'transition-opacity duration-300',
